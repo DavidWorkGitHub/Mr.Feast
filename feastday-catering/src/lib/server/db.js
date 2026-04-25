@@ -6,7 +6,7 @@ const pool = new Pool({
   port: 5432,
   database: 'feastday',
   user: 'postgres',
-  password: ''
+  password: 'feastday123'
 })
 
 pool.connect((err, client, release) => {
