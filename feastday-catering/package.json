@@ -1,24 +1,25 @@
 {
-	"name": "feastday-catering",
-	"private": true,
-	"version": "0.0.1",
-	"type": "module",
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"prepare": "svelte-kit sync || echo ''"
-	},
-	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/adapter-vercel": "^6.3.3",
-		"@sveltejs/kit": "^2.57.0",
-		"@sveltejs/vite-plugin-svelte": "^7.0.0",
-		"svelte": "^5.55.2",
-		"vite": "^8.0.10"
-	},
-	"dependencies": {
-		"bcryptjs": "^3.0.3",
-		"pg": "^8.20.0"
-	}
+  "name": "feastday-catering",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "prepare": "svelte-kit sync || echo ''",
+    "start": "node build/index.js"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-node": "^5.0.0",
+    "@sveltejs/kit": "^2.57.0",
+    "@sveltejs/vite-plugin-svelte": "^7.0.0",
+    "svelte": "^5.55.2",
+    "vite": "^8.0.10"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "pg": "^8.20.0"
+  }
 }
