@@ -1,11 +1,13 @@
 import pg from 'pg'
 const { Pool } = pg
 
-console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL)
+const connectionString = process.env.DATABASE_URL
+
+console.log('Connecting to:', connectionString ? connectionString.replace(/:([^:@]+)@/, ':****@') : 'NO URL FOUND')
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
+  connectionString,
+  ssl: { rejectUnauthorized: false }
 })
 
 pool.connect((err, client, release) => {
