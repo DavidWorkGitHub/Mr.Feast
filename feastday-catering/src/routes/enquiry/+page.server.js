@@ -5,9 +5,14 @@ export async function load({ cookies }) {
   const session = cookies.get('session')
   if (!session) throw redirect(303, '/login')
   
-  const user = JSON.parse(Buffer.from(session, 'base64').toString())
+  let user
+  try {
+    user = JSON.parse(Buffer.from(session, 'base64').toString())
+  } catch {
+    throw redirect(303, '/login')
+  }
+
   const packages = await pool.query('SELECT * FROM packages ORDER BY type, price')
-  
   return { user, packages: packages.rows }
 }
 
@@ -16,9 +21,14 @@ export const actions = {
     const session = cookies.get('session')
     if (!session) throw redirect(303, '/login')
     
-    const user = JSON.parse(Buffer.from(session, 'base64').toString())
+    let user
+    try {
+      user = JSON.parse(Buffer.from(session, 'base64').toString())
+    } catch {
+      throw redirect(303, '/login')
+    }
+
     const data = await request.formData()
-    
     const packageId = data.get('packageId')
     const eventDate = data.get('eventDate')
     const guestCount = data.get('guestCount')
@@ -28,10 +38,15 @@ export const actions = {
       return fail(400, { error: 'Please fill in all required fields' })
     }
 
-    await pool.query(
-      'INSERT INTO bookings (user_id, package_id, event_date, guest_count, notes) VALUES ($1, $2, $3, $4, $5)',
-      [user.id, packageId, eventDate, guestCount, notes || '']
-    )
+    try {
+      await pool.query(
+        'INSERT INTO bookings (user_id, package_id, event_date, guest_count, notes) VALUES ($1, $2, $3, $4, $5)',
+        [user.id, packageId, eventDate, guestCount, notes || '']
+      )
+    } catch (err) {
+      console.error('Booking error:', err.message)
+      return fail(500, { error: 'Failed to create booking. Please try again.' })
+    }
 
     throw redirect(303, '/bookings')
   }

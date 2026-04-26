@@ -1,6 +1,13 @@
 <script>
-  import { formatPrice, capitalise } from '$lib/utils.js'
   let { data } = $props()
+
+  function formatPrice(price) {
+    return `£${Number(price).toFixed(2)}`
+  }
+
+  function capitalise(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1)
+  }
 </script>
 
 <svelte:head><title>Admin — FeastDay Catering</title></svelte:head>
@@ -48,7 +55,7 @@
               <td>
                 <form method="POST" action="?/updateStatus">
                   <input type="hidden" name="bookingId" value={b.id} />
-                  <select name="status" onchange={() => { event.target.form.submit() }}>
+                  <select name="status" onchange={() => event.target.form.submit()}>
                     <option value="pending" selected={b.status === 'pending'}>Pending</option>
                     <option value="confirmed" selected={b.status === 'confirmed'}>Confirmed</option>
                     <option value="cancelled" selected={b.status === 'cancelled'}>Cancelled</option>
