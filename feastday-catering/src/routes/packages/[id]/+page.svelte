@@ -2,16 +2,15 @@
   import { page } from '$app/stores'
 
   const allPackages = [
-    { id: 1, name: 'Classic Birthday Bash', type: 'birthday', price: 299, maxGuests: 30, description: 'Fun finger foods, birthday cake and soft drinks. Perfect for all ages.', includes: ['Finger food buffet', 'Birthday cake', 'Soft drinks', 'Paper plates & napkins', 'Setup & cleanup'], details: 'Our Classic Birthday Bash is perfect for casual birthday celebrations. We bring everything you need for a fun, stress-free party. Our team sets up before guests arrive and cleans up after so you can enjoy every moment.' },
-    { id: 2, name: 'Premium Birthday Celebration', type: 'birthday', price: 599, maxGuests: 60, description: 'A 3-course meal with dedicated servers and a custom cake.', includes: ['3-course sit-down meal', 'Custom birthday cake', 'Dedicated servers', 'Table decorations', 'Setup & cleanup'], details: 'Elevate your birthday with a full sit-down dining experience. Our chefs prepare a stunning 3-course meal tailored to your preferences, with dedicated servers to ensure your guests feel special all evening.' },
-    { id: 3, name: 'Family Gathering Package', type: 'family', price: 399, maxGuests: 50, description: 'Hearty home-style cooking with mains, sides and dessert.', includes: ['Buffet-style mains', 'Selection of sides', 'Dessert table', 'Soft drinks', 'Setup & cleanup'], details: 'Perfect for reunions and family get-togethers. We bring the warmth of home cooking with a hearty buffet spread that caters to everyone from grandparents to grandchildren.' },
-    { id: 4, name: 'Grand Family Feast', type: 'family', price: 749, maxGuests: 100, description: 'A lavish buffet spread for large family occasions.', includes: ['Extended buffet menu', 'Hot & cold dishes', 'Dessert selection', 'Soft drinks & juice', 'Full setup & cleanup'], details: 'For those big family moments that deserve a real celebration. Our Grand Family Feast delivers an extensive spread of hot and cold dishes with something for every taste and dietary requirement.' },
-    { id: 5, name: 'Elegant Wedding Reception', type: 'wedding', price: 2499, maxGuests: 100, description: 'A 4-course dinner with wine service and wedding cake.', includes: ['4-course dinner', 'Wine & drinks service', 'Wedding cake', 'Dedicated staff', 'Full setup & cleanup'], details: 'Your wedding day deserves perfection. Our Elegant Wedding Reception package delivers a refined dining experience with a carefully crafted 4-course menu, full wine service, and a beautiful wedding cake.' },
-    { id: 6, name: 'Luxury Wedding Experience', type: 'wedding', price: 4999, maxGuests: 200, description: 'Bespoke menu, champagne reception and full table service.', includes: ['Bespoke custom menu', 'Champagne reception', 'Full table service', 'Wedding cake', 'Premium setup & cleanup'], details: 'The ultimate wedding catering experience. We work with you to create a completely bespoke menu that reflects your story, complemented by a champagne reception, premium table service, and a stunning wedding cake.' }
+    { id: 1, name: 'Classic Birthday Bash', type: 'birthday', price: 299, maxGuests: 30, description: 'Fun finger foods, birthday cake and soft drinks. Perfect for all ages.', includes: ['Finger food buffet', 'Birthday cake', 'Soft drinks', 'Paper plates & napkins', 'Setup & cleanup'], details: 'Our Classic Birthday Bash is perfect for casual birthday celebrations. We bring everything you need for a fun, stress-free party.' },
+    { id: 2, name: 'Premium Birthday Celebration', type: 'birthday', price: 599, maxGuests: 60, description: 'A 3-course meal with dedicated servers and a custom cake.', includes: ['3-course sit-down meal', 'Custom birthday cake', 'Dedicated servers', 'Table decorations', 'Setup & cleanup'], details: 'Elevate your birthday with a full sit-down dining experience. Our chefs prepare a stunning 3-course meal tailored to your preferences.' },
+    { id: 3, name: 'Family Gathering Package', type: 'family', price: 399, maxGuests: 50, description: 'Hearty home-style cooking with mains, sides and dessert.', includes: ['Buffet-style mains', 'Selection of sides', 'Dessert table', 'Soft drinks', 'Setup & cleanup'], details: 'Perfect for reunions and family get-togethers. We bring the warmth of home cooking with a hearty buffet spread.' },
+    { id: 4, name: 'Grand Family Feast', type: 'family', price: 749, maxGuests: 100, description: 'A lavish buffet spread for large family occasions.', includes: ['Extended buffet menu', 'Hot & cold dishes', 'Dessert selection', 'Soft drinks & juice', 'Full setup & cleanup'], details: 'For those big family moments that deserve a real celebration. Our Grand Family Feast delivers an extensive spread.' },
+    { id: 5, name: 'Elegant Wedding Reception', type: 'wedding', price: 2499, maxGuests: 100, description: 'A 4-course dinner with wine service and wedding cake.', includes: ['4-course dinner', 'Wine & drinks service', 'Wedding cake', 'Dedicated staff', 'Full setup & cleanup'], details: 'Your wedding day deserves perfection. Our Elegant Wedding Reception package delivers a refined dining experience.' },
+    { id: 6, name: 'Luxury Wedding Experience', type: 'wedding', price: 4999, maxGuests: 200, description: 'Bespoke menu, champagne reception and full table service.', includes: ['Bespoke custom menu', 'Champagne reception', 'Full table service', 'Wedding cake', 'Premium setup & cleanup'], details: 'The ultimate wedding catering experience. We work with you to create a completely bespoke menu.' }
   ]
 
   const typeIcons = { birthday: '🎂', family: '👨‍👩‍👧‍👦', wedding: '💍' }
-
   let id = $derived(Number($page.params.id))
   let pkg = $derived(allPackages.find(p => p.id === id))
 </script>
@@ -53,7 +52,7 @@
         <div class="guests">Up to {pkg.maxGuests} guests</div>
         <hr />
         <p>Ready to book this package for your event?</p>
-        <a href="/register" class="btn-book">BOOK THIS PACKAGE</a>
+        <a href="/enquiry" class="btn-book">BOOK THIS PACKAGE</a>
         <p class="note">You'll need an account to complete your booking</p>
       </div>
 

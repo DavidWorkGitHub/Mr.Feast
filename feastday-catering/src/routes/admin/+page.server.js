@@ -5,7 +5,13 @@ export async function load({ cookies }) {
   const session = cookies.get('session')
   if (!session) throw redirect(303, '/login')
 
-  const user = JSON.parse(Buffer.from(session, 'base64').toString())
+  let user
+  try {
+    user = JSON.parse(Buffer.from(session, 'base64').toString())
+  } catch {
+    throw redirect(303, '/login')
+  }
+
   if (user.role !== 'admin') throw redirect(303, '/')
 
   const bookings = await pool.query(

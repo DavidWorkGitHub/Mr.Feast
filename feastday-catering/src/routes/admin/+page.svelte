@@ -1,5 +1,5 @@
 <script>
-  import { formatPrice, formatDate, capitalise } from '$lib/utils.js'
+  import { formatPrice, capitalise } from '$lib/utils.js'
   let { data } = $props()
 </script>
 
@@ -48,7 +48,7 @@
               <td>
                 <form method="POST" action="?/updateStatus">
                   <input type="hidden" name="bookingId" value={b.id} />
-                  <select name="status" onchange="this.form.submit()">
+                  <select name="status" onchange={() => { event.target.form.submit() }}>
                     <option value="pending" selected={b.status === 'pending'}>Pending</option>
                     <option value="confirmed" selected={b.status === 'confirmed'}>Confirmed</option>
                     <option value="cancelled" selected={b.status === 'cancelled'}>Cancelled</option>
