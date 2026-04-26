@@ -3,7 +3,7 @@ import pg from 'pg'
 const { Pool } = pg
 
 const pool = new Pool({
-  connectionString: 'postgresql://postgres:nXgPCQEyQPmCgaCtUyFoviqqfAxXJTRe@shuttle.proxy.rlwy.net:38618/railway',
+  connectionString: 'postgresql://postgres:newpassword123@shuttle.proxy.rlwy.net:38618/railway',
   ssl: { rejectUnauthorized: false }
 })
 
