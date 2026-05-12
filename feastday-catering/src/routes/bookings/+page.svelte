@@ -33,6 +33,7 @@
           {#if booking.notes}
             <div class="notes">📝 {booking.notes}</div>
           {/if}
+          <a href="/enquiry?pkg={booking.package_id}" class="btn-book-again">BOOK THIS PACKAGE AGAIN</a>
         </div>
       {/each}
     </div>
@@ -70,4 +71,6 @@
   .detail span { font-size: 0.8rem; color: #888; }
   .detail strong { font-size: 0.95rem; }
   .notes { margin-top: 1rem; padding: 0.8rem; background: #f9f9f9; border-radius: 8px; font-size: 0.85rem; color: #555; }
+  .btn-book-again { display: inline-block; margin-top: 1rem; background: #e63946; color: white; padding: 0.6rem 1.2rem; border-radius: 4px; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.5px; transition: background 0.2s; }
+  .btn-book-again:hover { background: #c1121f; }
 </style>

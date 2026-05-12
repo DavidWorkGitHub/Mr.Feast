@@ -52,7 +52,7 @@
         <div class="guests">Up to {pkg.maxGuests} guests</div>
         <hr />
         <p>Ready to book this package for your event?</p>
-        <a href="/enquiry" class="btn-book">BOOK THIS PACKAGE</a>
+        <a href="/enquiry?pkg={pkg.id}" class="btn-book">BOOK THIS PACKAGE</a>
         <p class="note">You'll need an account to complete your booking</p>
       </div>
 

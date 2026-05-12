@@ -1,5 +1,17 @@
 <script>
+  import { page } from '$app/stores'
+  
   let { data, form } = $props()
+  let selectedPackageId = $state('')
+  
+  $effect(() => {
+    const pkgParam = $page.url.searchParams.get('pkg')
+    if (pkgParam && !selectedPackageId) {
+      selectedPackageId = pkgParam
+    }
+  })
+  
+  $derived selectedPackage = data.packages.find(pkg => pkg.id === selectedPackageId)
 </script>
 
 <svelte:head><title>Book a Package — FeastDay Catering</title></svelte:head>
@@ -18,7 +30,7 @@
     <form method="POST">
       <div class="field">
         <label for="packageId">SELECT PACKAGE</label>
-        <select id="packageId" name="packageId" required>
+        <select id="packageId" name="packageId" bind:value={selectedPackageId} required>
           <option value="">-- Choose a package --</option>
           {#each data.packages as pkg}
             <option value={pkg.id}>
@@ -27,6 +39,19 @@
           {/each}
         </select>
       </div>
+
+      {#if selectedPackage}
+        <div class="selected-package">
+          <div class="package-header">YOUR SELECTED PACKAGE</div>
+          <div class="package-details">
+            <div class="package-name">{selectedPackage.name}</div>
+            <div class="package-info">
+              <span class="price">£{selectedPackage.price}</span>
+              <span class="guests">Up to {selectedPackage.max_guests} guests</span>
+            </div>
+          </div>
+        </div>
+      {/if}
 
       <div class="field">
         <label for="eventDate">EVENT DATE</label>
@@ -67,4 +92,10 @@
   .booking-as { background: #f9f9f9; padding: 0.8rem 1rem; border-radius: 8px; font-size: 0.85rem; color: #555; margin-bottom: 1.5rem; }
   .btn-submit { width: 100%; background: #111; color: white; border: none; padding: 1rem; border-radius: 8px; font-weight: 700; font-size: 0.9rem; letter-spacing: 1px; cursor: pointer; transition: background 0.2s; font-family: 'Inter', sans-serif; }
   .btn-submit:hover { background: #e63946; }
+  .selected-package { background: #f0f0f0; padding: 1.2rem; border-radius: 8px; border-left: 4px solid #e63946; margin-bottom: 1.5rem; }
+  .package-header { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; color: #666; margin-bottom: 0.6rem; }
+  .package-details { display: flex; flex-direction: column; gap: 0.5rem; }
+  .package-name { font-size: 1.2rem; font-weight: 700; color: #111; }
+  .package-info { display: flex; gap: 1.5rem; font-size: 0.9rem; color: #555; }
+  .price { font-weight: 600; color: #e63946; }
 </style>

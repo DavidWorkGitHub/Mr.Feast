@@ -27,6 +27,7 @@
       {:else}
         <a href="/register" class="btn-secondary">BOOK NOW</a>
       {/if}
+      <a href="/admin" class="btn-primary">ADMIN</a>
     </div>
   </div>
   <div class="hero-image">
